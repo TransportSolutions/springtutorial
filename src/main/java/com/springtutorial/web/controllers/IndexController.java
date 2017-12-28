@@ -1,13 +1,13 @@
-package com.springtutorial.controllers;
+package com.springtutorial.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HelloWorldController {
+public class IndexController {
 
     @RequestMapping("/")
-    public String hello() {
+    public String home() {
         return "index";
     }
 }

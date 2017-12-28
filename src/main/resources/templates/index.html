@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Hello World</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: common-header"></head>
+
 <body>
-<H1>Hello World</H1>
+
+<div th:replace="common/navbar::navbar" />
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1 th:text="#{index.main.callout}">Enter mail callout text here</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br/> All you get is this text and a
+            mostly barebones HTML document.</p>
+    </div>
+
+</div><!-- /.container -->
+
+<div th:replace="common/header::before-body-scripts"/>
+
 </body>
 </html>
