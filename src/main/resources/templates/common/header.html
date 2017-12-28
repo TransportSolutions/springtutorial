@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common-header">
+
+    <title>Spring boot project</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/css/styles.css}" rel="stylesheet" media="screen"/>
+
+</head>
+<div th:fragment="before-body-scripts">
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+</div>
+</html>
