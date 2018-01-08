@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: common-header"></head>
+
+<body>
+
+<div th:replace="common/navbar::navbar"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1 th:text="#{copy.about.text}">Enter mail callout text here</h1>
+        <button th:id="about-us">About Us</button>
+        <p class="lead">this is a copy controller</p>
+    </div>
+
+</div><!-- /.container -->
+<div>
+
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
+
+<div th:replace="common/header::before-body-scripts"/>
+
+</body>
+</html>
