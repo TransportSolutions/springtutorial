@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: common-header"></head>
+
+<body>
+
+<div th:replace="common/navbar::navbar"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1 th:text="#{navbar.main.contact}"></h1>
+
+    </div>
+
+</div><!-- /.container -->
+<div>
+    <div class="container">
+        <form id="contactForm"
+              th:action="@{/contact/}"
+              th:object="${feedback}"
+              method="post">
+            <div class="form-group row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email"
+                               th:field="*{email}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="firstName1" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstName1" placeholder="First Name"
+                               th:field="*{firstName}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="lastName1" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="lastName1" placeholder="Last Name"
+                               th:field="*{lastName}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="lastName1" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="feedback" placeholder="Feedback" th:field="*{feedback}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6 col-md-offset-3">
+                    <label for="lastName1" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-primary" id="submit" placeholder="Feedback">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
+
+<div th:replace="common/header::before-body-scripts"/>
+
+</body>
+</html>
