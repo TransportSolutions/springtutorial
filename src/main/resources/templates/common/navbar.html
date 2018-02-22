@@ -17,6 +17,21 @@
                 <li><a href="/about" th:text="#{navbar.main.about}">About</a></li>
                 <li><a href="/contact" th:text="#{navbar.main.contact}"></a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a th:href="@{/login}" th:text="#{navbar.main.login}"></a>
+                </li>
+            </ul>
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
+                    <!--<a th:href="@{/login}" th:text="#{navbar.main.login}"></a>-->
+                <!--</li>-->
+                <!--<li th:if="${#authorization.expression('isAuthenticated()')}">-->
+                    <!--<form id="f" th:action="@{/logout}" method="post" role="form" class="navbar-form">-->
+                        <!--<button type="submit" class="btn btn-primary">Log Out</button>-->
+                    <!--</form>-->
+                <!--</li>-->
+            <!--</ul>-->
         </div><!--/.nav-collapse -->
     </div>
 </div>
