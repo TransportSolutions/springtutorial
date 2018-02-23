@@ -7,23 +7,30 @@ import java.io.Serializable;
  * Created by agrewal on 2/22/18.
  */
 @Entity
-@Table(name="user_role")
+@Table(name = "user_role")
 public class UserRole implements Serializable {
 
     /**
      * The Serial Version UID for Serializable classes.
      */
     private static final long serialVersionUID = 1L;
-
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Role role;
+
+    public UserRole(User user, Role role) {
+        this.user = user;
+        this.role = role;
+    }
+
+    public UserRole() {
+
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -57,10 +64,6 @@ public class UserRole implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public UserRole() {
-
     }
 
 
