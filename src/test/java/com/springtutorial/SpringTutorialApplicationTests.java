@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringtutorialApplicationTests {
+public class SpringTutorialApplicationTests {
 
     @Autowired
     private I18NService i18NService;

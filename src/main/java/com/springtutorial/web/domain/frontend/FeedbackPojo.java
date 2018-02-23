@@ -11,6 +11,8 @@ public class FeedbackPojo implements Serializable {
 
     private String email;
     private String firstName;
+    private String lastName;
+    private String feedback;
 
     @Override
     public String toString() {
@@ -53,7 +55,4 @@ public class FeedbackPojo implements Serializable {
     public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
-
-    private String lastName;
-    private String feedback;
 }
