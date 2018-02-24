@@ -31,7 +31,7 @@ public class UserServiceIntegrationTest {
     public void createNewUser() throws Exception {
 
         Set<UserRole> userRoles = new HashSet<>();
-        User basicUser = UserUtils.createBasicUser("Harinder", "agrewal0093@gmail.com");
+        User basicUser = UserUtils.createBasicUser("Harinder", "hgrewal@gmail.com");
         userRoles.add(new UserRole(basicUser, new Role(RolesEnum.BASIC)));
         User user = userService.createUser(basicUser, PlansEnum.BASIC, userRoles);
         Assert.assertNotNull(user);
