@@ -35,7 +35,7 @@ public class SpringTutorialApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         LOG.info("Creating basic user...");
-        User user = UserUtils.createBasicUser("Sandeep", "sakurd85@gmail.com");
+        User user = UserUtils.createBasicUser("admin", "sakurd85@gmail.com");
         Set<UserRole> userRoles = new HashSet<>();
         userRoles.add(new UserRole(user, new Role(RolesEnum.ADMIN)));
         LOG.debug("Creating user with username {}", user.getUsername());

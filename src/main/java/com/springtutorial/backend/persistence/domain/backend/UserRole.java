@@ -1,5 +1,7 @@
 package com.springtutorial.backend.persistence.domain.backend;
 
+import org.springframework.boot.autoconfigure.web.ResourceProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,13 +16,33 @@ public class UserRole implements Serializable {
      * The Serial Version UID for Serializable classes.
      */
     private static final long serialVersionUID = 1L;
+
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserRole userRole = (UserRole) o;
+
+        return id == userRole.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
+
     private Role role;
 
     public UserRole(User user, Role role) {
@@ -32,22 +54,12 @@ public class UserRole implements Serializable {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UserRole userRole = (UserRole) o;
-
-        if (user != null ? !user.equals(userRole.user) : userRole.user != null) return false;
-        return role != null ? role.equals(userRole.role) : userRole.role == null;
+    public long getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        int result = user != null ? user.hashCode() : 0;
-        result = 31 * result + (role != null ? role.hashCode() : 0);
-        return result;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public User getUser() {
