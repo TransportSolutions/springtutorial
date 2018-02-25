@@ -1,8 +1,10 @@
 package com.springtutorial.backend.services;
 
+import com.springtutorial.backend.persistence.domain.backend.PasswordResetToken;
 import com.springtutorial.backend.persistence.domain.backend.Plan;
 import com.springtutorial.backend.persistence.domain.backend.User;
 import com.springtutorial.backend.persistence.domain.backend.UserRole;
+import com.springtutorial.backend.persistence.repositories.PasswordResetTokenRepository;
 import com.springtutorial.backend.persistence.repositories.PlanRepository;
 import com.springtutorial.backend.persistence.repositories.RoleRepository;
 import com.springtutorial.backend.persistence.repositories.UserRepository;
@@ -35,6 +37,9 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private PasswordResetTokenRepository passwordResetTokenRepository;
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
@@ -61,6 +66,18 @@ public class UserService {
 
         return user;
 
+    }
+
+    @Transactional
+    public void updateUserPassword(long userId, String password) {
+        password = passwordEncoder.encode(password);
+        userRepository.updateUserPassword(userId, password);
+        LOG.debug("Password updated successfully for user id {} ", userId);
+
+        Set<PasswordResetToken> resetTokens = passwordResetTokenRepository.findAllByUserId(userId);
+        if (!resetTokens.isEmpty()) {
+            passwordResetTokenRepository.delete(resetTokens);
+        }
     }
 
 }
