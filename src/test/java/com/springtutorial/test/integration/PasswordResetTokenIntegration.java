@@ -29,12 +29,6 @@ import java.util.stream.Collectors;
 @SpringBootTest
 public class PasswordResetTokenIntegration extends AbstractIntegrationTest{
 
-    @Value("${token.expiration.length.minutes}")
-    private int expirationTimeInMinutes;
-
-    @Autowired
-    private PasswordResetTokenRepository passwordResetTokenRepository;
-
     @Rule
     public TestName testName = new TestName();
 
@@ -142,14 +136,4 @@ public class PasswordResetTokenIntegration extends AbstractIntegrationTest{
 
 
     //------------------> Private methods
-
-    private PasswordResetToken createPasswordResetToken(String token, User user, LocalDateTime now) {
-
-
-        PasswordResetToken passwordResetToken = new PasswordResetToken(token, user, now, expirationTimeInMinutes);
-        passwordResetTokenRepository.save(passwordResetToken);
-        Assert.assertNotNull(passwordResetToken.getId());
-        return passwordResetToken;
-
-    }
 }
