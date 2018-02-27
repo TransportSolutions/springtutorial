@@ -2,6 +2,7 @@ package com.springtutorial.utils;
 
 import com.springtutorial.backend.persistence.domain.backend.User;
 import com.springtutorial.web.controllers.ForgotMyPasswordController;
+import com.springtutorial.web.domain.frontend.BasicAccountPayload;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -63,19 +64,19 @@ public class UserUtils {
 
         return passwordResetUrl;
     }
-//
-//    public static <T extends BasicAccountPayload> User fromWebUserToDomainUser(T frontendPayload) {
-//        User user = new User();
-//        user.setUsername(frontendPayload.getUsername());
-//        user.setPassword(frontendPayload.getPassword());
-//        user.setFirstName(frontendPayload.getFirstName());
-//        user.setLastName(frontendPayload.getLastName());
-//        user.setEmail(frontendPayload.getEmail());
-//        user.setPhoneNumber(frontendPayload.getPhoneNumber());
-//        user.setCountry(frontendPayload.getCountry());
-//        user.setEnabled(true);
-//        user.setDescription(frontendPayload.getDescription());
-//
-//        return user;
-//    }
+
+    public static <T extends BasicAccountPayload> User fromWebUserToDomainUser(T frontendPayload) {
+        User user = new User();
+        user.setUsername(frontendPayload.getUsername());
+        user.setPassword(frontendPayload.getPassword());
+        user.setFirstName(frontendPayload.getFirstName());
+        user.setLastName(frontendPayload.getLastName());
+        user.setEmail(frontendPayload.getEmail());
+        user.setPhoneNumber(frontendPayload.getPhoneNumber());
+        user.setCountry(frontendPayload.getCountry());
+        user.setEnabled(true);
+        user.setDescription(frontendPayload.getDescription());
+
+        return user;
+    }
 }
