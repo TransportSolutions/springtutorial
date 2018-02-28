@@ -3,6 +3,7 @@ package com.springtutorial;
 import com.springtutorial.backend.persistence.domain.backend.Role;
 import com.springtutorial.backend.persistence.domain.backend.User;
 import com.springtutorial.backend.persistence.domain.backend.UserRole;
+import com.springtutorial.backend.services.PlanService;
 import com.springtutorial.backend.services.UserService;
 import com.springtutorial.enums.PlansEnum;
 import com.springtutorial.enums.RolesEnum;
@@ -29,6 +30,9 @@ public class SpringTutorialApplication implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PlanService planService;
+
     @Value("${webmaster.admin}")
     private String webmasterUsername;
 
@@ -45,6 +49,11 @@ public class SpringTutorialApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        LOG.info("Creating Basic and Pro plans in the database...");
+        planService.createPlan(PlansEnum.BASIC.getId());
+        planService.createPlan(PlansEnum.PRO.getId());
+
         LOG.info("Creating basic user...");
         User user = UserUtils.createBasicUser(webmasterUsername, webmasterEmail);
         user.setPassword(webmasterPassword);

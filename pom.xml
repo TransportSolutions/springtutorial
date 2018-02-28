@@ -81,6 +81,13 @@
 			<version>3.0.2.RELEASE</version>
 		</dependency>
 
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+			<version>2.1.2.RELEASE</version>
+		</dependency>
+
 		<!-- spring data -->
 		<dependency>
 			<groupId>com.h2database</groupId>
