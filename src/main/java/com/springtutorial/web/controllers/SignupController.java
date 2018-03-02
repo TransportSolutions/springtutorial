@@ -9,6 +9,7 @@ import com.springtutorial.backend.services.S3Service;
 import com.springtutorial.backend.services.UserService;
 import com.springtutorial.enums.PlansEnum;
 import com.springtutorial.enums.RolesEnum;
+import com.springtutorial.exceptions.S3Exception;
 import com.springtutorial.utils.UserUtils;
 import com.springtutorial.web.domain.frontend.BasicAccountPayload;
 import com.springtutorial.web.domain.frontend.ProAccountPayload;
@@ -21,14 +22,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.Clock;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -200,18 +202,18 @@ public class SignupController {
         return SUBSCRIPTION_VIEW_NAME;
     }
 
-//    @ExceptionHandler({StripeException.class, S3Exception.class})
-//    public ModelAndView signupException(HttpServletRequest request, Exception exception) {
-//
-//        LOG.error("Request {} raised exception {}", request.getRequestURL(), exception);
-//
-//        ModelAndView mav = new ModelAndView();
-//        mav.addObject("exception", exception);
-//        mav.addObject("url", request.getRequestURL());
-//        mav.addObject("timestamp", LocalDate.now(Clock.systemUTC()));
-//        mav.setViewName(GENERIC_ERROR_VIEW_NAME);
-//        return mav;
-//    }
+    @ExceptionHandler({S3Exception.class})
+    public ModelAndView signupException(HttpServletRequest request, Exception exception) {
+
+        LOG.error("Request {} raised exception {}", request.getRequestURL(), exception);
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("exception", exception);
+        mav.addObject("url", request.getRequestURL());
+        mav.addObject("timestamp", LocalDate.now(Clock.systemUTC()));
+        mav.setViewName(GENERIC_ERROR_VIEW_NAME);
+        return mav;
+    }
 
 
     //--------------> Private methods
