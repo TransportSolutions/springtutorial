@@ -21,14 +21,39 @@ public class User implements Serializable, UserDetails {
      */
     private static final long serialVersionUID = 1L;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
     private Set<UserRole> userRoles = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private Set<PasswordResetToken> passwordResetTokens = new HashSet<>();
+    @Column(unique = true)
+    private String username;
+    private String password;
+    @Column(unique = true)
+    private String email;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Length(max = 500)
+    private String description;
+    private String country;
+    @Column(name = "profile_image_url")
+    private String profileImageUrl;
+    @Column(name = "stripe_customer_id")
+    private String stripeCustomerId;
+    private boolean enabled;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "plan_id")
+    private Plan plan;
+
+    public User() {
+    }
 
     public Set<PasswordResetToken> getPasswordResetTokens() {
         return passwordResetTokens;
@@ -36,43 +61,6 @@ public class User implements Serializable, UserDetails {
 
     public void setPasswordResetTokens(Set<PasswordResetToken> passwordResetTokens) {
         this.passwordResetTokens = passwordResetTokens;
-    }
-
-    @Column(unique = true)
-    private String username;
-
-    private String password;
-
-    @Column(unique = true)
-    private String email;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
-    @Length(max = 500)
-    private String description;
-
-    private String country;
-
-    @Column(name = "profile_image_url")
-    private String profileImageUrl;
-
-    @Column(name = "stripe_customer_id")
-    private String stripeCustomerId;
-
-    private boolean enabled;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "plan_id")
-    private Plan plan;
-
-    public User() {
     }
 
     public Set<UserRole> getUserRoles() {
@@ -111,6 +99,10 @@ public class User implements Serializable, UserDetails {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -131,10 +123,6 @@ public class User implements Serializable, UserDetails {
         Set<GrantedAuthority> authorities = new HashSet<>();
         userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
         return authorities;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
